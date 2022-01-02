@@ -124,25 +124,25 @@
 					any other reason, here is how you can contact me.</p>
 					<div class="split style1">
 						<section>
-							<form method="post" action="https://formsubmit.co/darcy.matheson10@gmail.com">
-								<input type="hidden" name="_subject" value="New message from portfolio site!">
-								<input type="hidden" name="_next" value="generic.html">
+							<form method="POST" action="https://formsubmit.co/darcy.matheson10@gmail.com">
 								<div class="fields">
 									<div class="field half">
 										<label for="name">Name</label>
-										<input type="text" name="name" placeholder="Name (Required)" id="name" required/>
+										<input type="text" name="name" placeholder="Name (Required)" id="name" required>
 									</div>
 									<div class="field half">
 										<label for="email">Email</label>
-										<input type="text" name="email" placeholder="Email (Required)" id="email" required/>
+										<input type="text" name="email" placeholder="Email (Required)" id="email" required>
 									</div>
 									<div class="field">
 										<label for="message">Message</label>
-										<textarea name="message" placeholder="Your message here..." id="message" rows="5"></textarea>
+										<textarea name="message" placeholder="Your message here..." id="message" rows="5" required></textarea>
 									</div>
 								</div>
+								<input type="hidden" name="_subject" value="New message from portfolio site!">
+								<input type="hidden" name="_next" value="generic.html">
 								<ul class="actions">
-									<li><a href="https://www.google.com" target="_blank" class="button primary submit">Send Message</a></li>
+									<li><button class="button primary submit" type="submit">Send Message</a></button></li>
 								</ul>
 							</form>
 						</section>
