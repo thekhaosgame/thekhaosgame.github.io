@@ -3875,10 +3875,10 @@ input, select, textarea {
 
 	#welcome {
 		background-attachment: fixed;
-		background-image: url("images/intro.svg");
-		background-position: top right;
-		background-repeat: no-repeat;
-		background-size: 100% 100%;
+		background-image: url("images/topography.svg");
+		background-position: center;
+		background-repeat: repeat;
+		background-size: 20%;
 	}
 
 		#welcome p {
@@ -3904,7 +3904,197 @@ input, select, textarea {
 		@media screen and (max-width: 1280px) {
 
 			#welcome {
-				background-attachment: scroll;
+				background-attachment: fixed;
+			}
+
+		}
+
+/* Portfolio */
+
+	#portfolio {
+		background-attachment: fixed;
+		background-image: url("images/graph-paper.svg");
+		background-position: center;
+		background-repeat: repeat;
+		background-size: 7%;
+	}
+
+		#portfolio p {
+			font-size: 1.25em;
+		}
+
+			@media screen and (max-width: 980px) {
+
+				#portfolio p br {
+					display: none;
+				}
+
+			}
+
+			@media screen and (max-width: 736px) {
+
+				#portfolio p {
+					font-size: 1em;
+				}
+
+			}
+
+		@media screen and (max-width: 1280px) {
+
+			#portfolio {
+				background-attachment: fixed;
+			}
+
+		}
+
+/* Side Projects */
+
+	#side-projects {
+		background-attachment: fixed;
+		background-image: url("images/circuit-board.svg");
+		background-position: center;
+		background-repeat: repeat;
+		background-size: 10%;
+	}
+
+		#side-projects p {
+			font-size: 1.25em;
+		}
+
+			@media screen and (max-width: 980px) {
+
+				#side-projects p br {
+					display: none;
+				}
+
+			}
+
+			@media screen and (max-width: 736px) {
+
+				#side-projects p {
+					font-size: 1em;
+				}
+
+			}
+
+		@media screen and (max-width: 1280px) {
+
+			#side-projects {
+				background-attachment: fixed;
+			}
+
+		}
+
+/* About Me */
+
+	#about-me {
+		background-attachment: fixed;
+		background-image: url("images/floating-cogs.svg");
+		background-position: center;
+		background-repeat: repeat;
+		background-size: 10%;
+	}
+
+		#about-me p {
+			font-size: 1.25em;
+		}
+
+			@media screen and (max-width: 980px) {
+
+				#about-me p br {
+					display: none;
+				}
+
+			}
+
+			@media screen and (max-width: 736px) {
+
+				#about-me p {
+					font-size: 1em;
+				}
+
+			}
+
+		@media screen and (max-width: 1280px) {
+
+			#about-me {
+				background-attachment: fixed;
+			}
+
+		}
+
+/* Contact */
+
+	#contact {
+		background-attachment: fixed;
+		background-image: url("images/jigsaw.svg");
+		background-position: center;
+		background-repeat: repeat;
+		background-size: 5%;
+	}
+
+		#contact p {
+			font-size: 1.25em;
+		}
+
+			@media screen and (max-width: 980px) {
+
+				#contact p br {
+					display: none;
+				}
+
+			}
+
+			@media screen and (max-width: 736px) {
+
+				#contact p {
+					font-size: 1em;
+				}
+
+			}
+
+		@media screen and (max-width: 1280px) {
+
+			#contact {
+				background-attachment: fixed;
+			}
+
+		}
+
+/* Footer */
+
+	#footer {
+		background-attachment: fixed;
+		background-image: url("images/jigsaw.svg");
+		background-position: center;
+		background-repeat: repeat;
+		background-size: 5%;
+	}
+
+		#footer p {
+			font-size: 1.25em;
+		}
+
+			@media screen and (max-width: 980px) {
+
+				#footer p br {
+					display: none;
+				}
+
+			}
+
+			@media screen and (max-width: 736px) {
+
+				#footer p {
+					font-size: 1em;
+				}
+
+			}
+
+		@media screen and (max-width: 1280px) {
+
+			#footer {
+				background-attachment: fixed;
 			}
 
 		}
