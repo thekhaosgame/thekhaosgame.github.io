@@ -3011,12 +3011,20 @@ input, select, textarea {
 		}
 
 		.spotlights > section > .image {
+			-moz-transition: filter 1s ease;
+			-webkit-transition: filter 1s ease;
+			-ms-transition: filter 1s ease;
+			transition: filter 1s ease;
 			background-position: center center;
 			background-size: cover;
-			border-radius: 0em;
+			border-radius: 3vh;
+			margin-left: 4vw;
+			margin-top: 6vh;
+			margin-bottom: 6vh;
 			display: block;
 			position: relative;
-			width:35em;
+			width:30em;
+			filter: blur(0px);
 		}
 
 			.spotlights > section > .image img {
@@ -3024,11 +3032,11 @@ input, select, textarea {
 				display: block;
 			}
 
-			.spotlights > section > .image:before {
-				-moz-transition: opacity 1s ease;
-				-webkit-transition: opacity 1s ease;
-				-ms-transition: opacity 1s ease;
-				transition: opacity 1s ease;
+			/* .spotlights > section > .image:before {
+				-moz-transition: filter 1s ease;
+				-webkit-transition: filter 1s ease;
+				-ms-transition: filter 1s ease;
+				transition: filter 1s ease;
 				background: #2d2d2d;
 				content: '';
 				display: block;
@@ -3038,7 +3046,7 @@ input, select, textarea {
 				position: absolute;
 				top: 0;
 				width: 100%;
-			}
+			} */
 
 		.spotlights > section > .content {
 			padding: 4em 5em 2em 5em ;
@@ -3074,9 +3082,9 @@ input, select, textarea {
 			background-color: rgba(0, 0, 0, 0.1);
 		}
 
-		.spotlights > section.inactive > .image:before,
-		body.is-preload .spotlights > section > .image:before {
-			opacity: 1;
+		.spotlights > section.inactive > .image,
+		body.is-preload .spotlights > section > .image {
+			filter: blur(5px);
 		}
 
 		.spotlights > section.inactive > .content > .inner,
@@ -3090,8 +3098,13 @@ input, select, textarea {
 
 		@media screen and (max-width: 1680px) {
 
+			.spotlights > section > .image {
+				width: 100%;
+				height: 50vh;
+			}
+
 			.spotlights > section > .content {
-				padding: 4em 4em 2em 4em ;
+				padding: 2em 4em 2em 4em;
 			}
 
 		}
@@ -3099,12 +3112,13 @@ input, select, textarea {
 		@media screen and (max-width: 980px) {
 
 			.spotlights > section {
-				display: block;
+				display: inline-block;
 			}
 
 				.spotlights > section > .image {
-					width: 100%;
 					height: 50vh;
+					width: 90vw;
+					margin-right: 4vw;
 				}
 
 				.spotlights > section > .content {
@@ -3122,10 +3136,14 @@ input, select, textarea {
 		}
 
 		@media screen and (max-width: 736px) {
+			.spotlights > section {
+				display: inline-block;
+			}
 
 			.spotlights > section > .image {
 				height: 50vh;
-				min-height: 15em;
+				width: 90vw;
+				margin-top: 4vw;
 			}
 
 			.spotlights > section > .content {
@@ -3880,36 +3898,8 @@ input, select, textarea {
 		background-image: url("images/topography.svg");
 		background-position: center;
 		background-repeat: repeat;
-		background-size: 20%;
+		background-size: 1200px 1200px;
 	}
-
-		#welcome p {
-			font-size: 1.25em;
-		}
-
-			@media screen and (max-width: 980px) {
-
-				#welcome p br {
-					display: none;
-				}
-
-			}
-
-			@media screen and (max-width: 736px) {
-
-				#welcome p {
-					font-size: 1em;
-				}
-
-			}
-
-		@media screen and (max-width: 1280px) {
-
-			#welcome {
-				background-attachment: fixed;
-			}
-
-		}
 
 /* Portfolio */
 
@@ -3918,36 +3908,8 @@ input, select, textarea {
 		background-image: url("images/graph-paper.svg");
 		background-position: center;
 		background-repeat: repeat;
-		background-size: 7%;
+		background-size: 150px 150px;
 	}
-
-		#portfolio p {
-			font-size: 1.25em;
-		}
-
-			@media screen and (max-width: 980px) {
-
-				#portfolio p br {
-					display: none;
-				}
-
-			}
-
-			@media screen and (max-width: 736px) {
-
-				#portfolio p {
-					font-size: 1em;
-				}
-
-			}
-
-		@media screen and (max-width: 1280px) {
-
-			#portfolio {
-				background-attachment: fixed;
-			}
-
-		}
 
 /* Side Projects */
 
@@ -3956,36 +3918,8 @@ input, select, textarea {
 		background-image: url("images/circuit-board.svg");
 		background-position: center;
 		background-repeat: repeat;
-		background-size: 10%;
+		background-size: 304px 304px;
 	}
-
-		#side-projects p {
-			font-size: 1.25em;
-		}
-
-			@media screen and (max-width: 980px) {
-
-				#side-projects p br {
-					display: none;
-				}
-
-			}
-
-			@media screen and (max-width: 736px) {
-
-				#side-projects p {
-					font-size: 1em;
-				}
-
-			}
-
-		@media screen and (max-width: 1280px) {
-
-			#side-projects {
-				background-attachment: fixed;
-			}
-
-		}
 
 /* About Me */
 
@@ -3994,36 +3928,8 @@ input, select, textarea {
 		background-image: url("images/floating-cogs.svg");
 		background-position: center;
 		background-repeat: repeat;
-		background-size: 10%;
+		background-size: 360px 360px;
 	}
-
-		#about-me p {
-			font-size: 1.25em;
-		}
-
-			@media screen and (max-width: 980px) {
-
-				#about-me p br {
-					display: none;
-				}
-
-			}
-
-			@media screen and (max-width: 736px) {
-
-				#about-me p {
-					font-size: 1em;
-				}
-
-			}
-
-		@media screen and (max-width: 1280px) {
-
-			#about-me {
-				background-attachment: fixed;
-			}
-
-		}
 
 /* Contact */
 
@@ -4032,33 +3938,5 @@ input, select, textarea {
 		background-image: url("images/jigsaw.svg");
 		background-position: center;
 		background-repeat: repeat;
-		background-size: 5%;
+		background-size: 192px 192px;
 	}
-
-		#contact p {
-			font-size: 1.25em;
-		}
-
-			@media screen and (max-width: 980px) {
-
-				#contact p br {
-					display: none;
-				}
-
-			}
-
-			@media screen and (max-width: 736px) {
-
-				#contact p {
-					font-size: 1em;
-				}
-
-			}
-
-		@media screen and (max-width: 1280px) {
-
-			#contact {
-				background-attachment: fixed;
-			}
-
-		}
