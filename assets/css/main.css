@@ -3011,10 +3011,10 @@ input, select, textarea {
 		}
 
 		.spotlights > section > .image {
-			-moz-transition: filter 1s ease;
-			-webkit-transition: filter 1s ease;
-			-ms-transition: filter 1s ease;
-			transition: filter 1s ease;
+			-moz-transition: filter 0.5s ease;
+			-webkit-transition: filter 0.5s ease;
+			-ms-transition: filter 0.5s ease;
+			transition: filter 0.5s ease;
 			background-position: center center;
 			background-size: cover;
 			border-radius: 3vh;
@@ -3084,7 +3084,7 @@ input, select, textarea {
 
 		.spotlights > section.inactive > .image,
 		body.is-preload .spotlights > section > .image {
-			filter: blur(5px);
+			filter: blur(10px);
 		}
 
 		.spotlights > section.inactive > .content > .inner,
@@ -3544,13 +3544,13 @@ input, select, textarea {
 /* Sidebar */
 
 	#sidebar {
-		padding: 2.5em 2.5em 0.5em 2.5em ;
+		padding: 2.5em 2.5em 10em 2.5em ;
 		background: #1e1e1e;
 		cursor: default;
 		height: 100vh;
 		left: 0;
 		overflow-x: hidden;
-		overflow-y: auto;
+		overflow-y: hidden;
 		position: fixed;
 		text-align: right;
 		top: 0;
@@ -3602,7 +3602,7 @@ input, select, textarea {
 				-webkit-transition: opacity 0.15s ease, -webkit-transform 0.75s ease;
 				-ms-transition: opacity 0.15s ease, -ms-transform 0.75s ease;
 				transition: opacity 0.15s ease, transform 0.75s ease;
-				margin: 1.5em 0 0 0;
+				margin: 1em 0 0 0;
 				opacity: 1;
 				padding: 0;
 				position: relative;
@@ -3765,7 +3765,7 @@ input, select, textarea {
 			letter-spacing: 0.25em;
 			line-height: 1;
 			outline: 0;
-			padding: 1.35em 0;
+			padding: 1em 0;
 			position: relative;
 			text-decoration: none;
 			text-transform: uppercase;
