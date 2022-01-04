@@ -3078,8 +3078,8 @@ input, select, textarea {
 				opacity: 1;
 			}
 
-		.spotlights > section:nth-child(2n) {
-			background-color: rgba(0, 0, 0, 0.1);
+		.spotlights > section:nth-child(2n + 1) {
+			background-color: rgba(0, 0, 0, 0.15);
 		}
 
 		.spotlights > section.inactive > .image,
