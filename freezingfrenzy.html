@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<link rel="icon" href="images/signature.png">
+		<title>Freezing Frenzy | Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload light">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Darcy Matheson</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="freezingfrenzy.html" class="active">Portfolio</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper fade-up">
+						<div class="inner">
+							<h1 class="major">Freezing Frenzy | Portfolio</h1>
+							<span class="image fit" style="border-radius:1em;margin-bottom:0;padding-bottom:0;width:90%;height:90%;display:block;margin:auto;"><img src="images/FreezingFrenzy/Thumbnail_UI.png" alt="Thumbnail" /></span>
+							<hr/>
+							<h2>Project Details</h2>
+							<h3>Technical</h3>
+							<li><b>Engine:</b> Unity</li>
+							<li><b>Language:</b> C#</li>
+							<li><b>Platform:</b> PC</li>
+							<li><b>Roles:</b> Solo Programmer, Co-Designer</li>
+							<br/>
+							<h3>Development</h3>
+							<li><b>Duration:</b> 3 days</li>
+							<li><b>Release Date:</b> June 12, 2021</li>
+							<hr/>
+							<h2>Overview</h2>
+							<h3>Game</h3>
+							<p>Undercooked is a <b>first-person wave shooter</b> about fighting overgrown food using a range of culinary weaponry. 
+							Each wave you must fight to survive, using your microwave gun, a-salt rifle and pepper shotgun to defend yourself 
+							against the relentless hordes of <b>strawberries, bananas</b> and <b>onions</b>.
+							Reposition to access new areas with the handy <b>grappling hookshot</b> and other movement skills, such as a <b>slide</b> and <b>ledge mantle</b>.
+							After each wave, seek out the temporarily active <b>upgrade station</b> and refill your ammo, increase your health and damage using <b>fibre</b> earned from combat.
+							All the while, charging up your <b>magic cleaver</b> by dealing damage and when things get dicey, throw it out at a nearby enemy to cast a 
+							devastating <b>chaining bounce attack</b> that restores your missing health points.</p>
+							<h3>Production</h3>
+							<p>The game was designed, developed and produced solely by a group of <b>ten students</b> which consisted of two programmers (myself included), four designers 
+							and	four artists. This was our <b>final assessment of the first year</b> of the course. We met with an industry panel of experienced developers for feedback 
+							on our production planning process and early prototyping which helped us bring the scope of the project to a reasonable level for the <b>six week 
+							production period</b>. We kept everyone on track throughout development by holding a morning standup meeting each working day and managing ongoing tasks
+							with a shared <b>Hack'N'Plan</b> board. We also used <b>Git</b> through the <b>GitKraken</b> client for version control.</p>
+							<hr/>
+							<h2>Contribution</h2>
+							<h3>On this project I contributed...</h3>
+							<li>8,799 lines of code across 38 separate scripts</li>
+							<li>6 animator controllers linking 21 unique animations</li>
+							<li>4 unique enemy AI behaviour trees utlising NavMesh</li>
+							<li>20 UI assets created and implemented</li>
+							<li>6 UI layouts designed and developed</li>
+							<li>49 sounds sourced and implemented</li>
+							<li>1 Technical Design Document, consisting of 3,486 words across 18 pages</li>
+							<br/>
+							<p>I was responsible for setting up and managed the <b>Git repository</b> and helped the rest of the team members learn how to use it and gave assistance 
+							to those who needed it when asked. I also created and set up the <b>Unity project</b> for the <b>URP pipeline</b> which we were required to use.</p>
+							<h3>About the code</h3>
+							<p>As I wrote all of the code used in the gameplay scene and some of the code used in the main menu scene, my responsibilities and contributions
+							to the code side of the project were quite varied. As I also set the organisation standards within the <b>Technical Design Document</b>, I endeavoured to
+							make the code as organised and easy to navigate as possible.</p>
+							<p>I started out by making the <b>player movement</b>, after making multiple platformers over the years I have learnt a lot about the best practices 
+							when managing acceleration and drag on a physics-based character, allowing them to feel fluent and intuitive to control. In the player's movement 
+							ability set is a <b>slide</b>, which gains acceleration appropriately on slopes, accompanied by a smooth <b>crouch</b> and <b>sprint</b>, a basic fixed 
+							height <b>jump</b> (with coyote time and input buffering) and a <b>grappling hookshot</b>, to allow for more vertical traversal options. I also added 
+							automatic <b>ledge mantle</b> to make the platforming more forgiving and some <b>surface magnetism</b> code to prevent slopes leading to unintended 
+							bumpiness when changing gradients.</p>
+							<p>For the player's grapple hookshot I was inspired by <a href="https://twitter.com/wilnyl/status/1104769822758502402?lang=en" target="_blank">
+							Wilnyl's grappling hook rope effect</a>, and decided to attempt to recreate it for our own grapple ability. To do this I used 
+							<a href="https://www.desmos.com/calculator">Desmos</a> to model the desired sin and cos curves, then I projected them onto the rope in world space as 
+							offsets from the straight line from gun to target point, using a float timer as the input. In addition to this, there are also animation curves and 
+							other configurable properties which play into it and can be changed in the inspector to achieve the desired visual effect. Here is the end result 
+							of all that math.</p>
+							<video style="border-radius:1em;display:block;margin:auto;" width=90% height=90% controls><source src="/videos/Undercooked/Undercooked_Grapple.mp4"></video>
+							<p style="text-align:center;"><i>The grapple hookshot being unlocked and used in game.</i></p>
+							<p>Once the movement was completed, I moved on to the <b>combat system</b>, more specifically, the frameworks that would be needed to implement the 4 weapons
+							that are featured in our game. The piercing <b>Microwave Gun</b> was first, then the rapid-fire <b>A-Salt Rifle</b> (we're hilarious), and lastly the
+							final gun, the devastating <b>Pepper Shotgun</b>. Finally, I built a custom system for the player's ultimate ability and final weapon, the <b>Magic Cleaver</b>.
+							All of the guns however, operate off separate instances of an <b>identical script</b>, which is simply tuned differently to give them distinct behaviours like
+							bullet piercing, unlimited ammo, spread shots, and their sound and visual differences.</p>
+							<p>I wanted to make all of the weapons use the same script for a few reasons:</p>
+							<ol><i>
+								<li>Reduced amount of scripting required, so I could work on developing other things for the alpha milestone.</li>
+								<li>It meant there was a unified type which could be referenced to get information about a weapon (helpful for UI &amp; upgrades).</li>
+								<li>Designers could be more creative when tuning, as the weapon wasn't restricted to a certain archetype or set of characteristics.</li>
+							</i></ol>
+							<p>If you are interested, <b><a href="https://pastebin.com/fdYF5z5U" target="_blank">here is a copy</a></b> of the script that we ended up with for the guns,
+							and some gameplay of them in action.</p>
+							<video style="border-radius:1em;display:block;margin:auto;" width=90% height=90% controls><source src="/videos/Undercooked/Undercooked_Weapons.mp4"></video>
+							<p style="text-align:center;"><i>The different guns of Undercooked being used in game.</i></p>
+							<p></p>
+							<p>The game's <b>Enemy AI</b> was created using <b>custom behaviour trees</b> which I designed, and the navigation was achieved using Unity's in-built 
+							<b>NavMesh</b> system. I started off making a base class for all enemies, which could control basic shared behaviours like taking damage, updating the 
+							health bar and despawning when out of range of the player. Undercooked has 3 enemy types:</p>
+							<ol><i>
+								<li>A goofy banana bunch that attacks with a melee and splits into smaller, faster bananas when destroyed</li>
+								<li>A tactical strawberry that fires homing seeds and repositions to be in sight of the player</li>
+								<li>A tanky onion which has multiple layers of defensive armour and attacks the player with a fast charge</li>
+							</i></ol>
+							<p>Creating these enemies was certainly a new challenge for me in many ways, I didn't have much experience with creating enemy AI in 3D games beforehand
+							but nonetheless took on the challenge as I knew it would lead to a good opportunity to improve my skills. In addition to this, I budgeted my time to 
+							allow enough room to make numerous mistakes and changes along the way when developing these enemies and this helped me learn lots and overcome the challenges
+							that I faced in the process. Prior to this assessment I had experience with writing the <b>A* algorithm</b> from scratch and that helped me 
+							understand all that was going on in <b>Unity</b> whenever I encountered an issue with the <b>NavMesh</b>. To facilitate enemies of different sizes in such an
+							relatively expansive environment, I opted to use the new Unity NavMesh Components package, which allows multiple different NavMesh surfaces to be baked 
+							for different agent types. The final set of NavMesh surfaces are shown on our map below.</p>
+							<span class="image fit" style="border-radius:1em;margin-bottom:0;padding-bottom:0;width:90%;height:90%;display:block;margin:auto;"><img src="images/Undercooked/Undercooked_NavMesh.png" alt="NavMesh Surfaces in Undercooked" /></span>
+							<p style="text-align:center;"><i>The NavMesh surfaces which enemies use to navigate the environment of Undercooked.</i></p>
+							<hr/>
+							<h2>Thank you for reading!</h2>
+							<p>Feel free to check out the store page for the game on Itch.io or simply return to the home page.</p>
+							<ul class="actions">
+								<li><a href="https://prometheusgamedev.itch.io/undercooked" target="_blank" class="button">Download Game</a></li>
+								<li><a href="index.html" class="button primary">Return Home</a></li>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>Site by Darcy Matheson</li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
