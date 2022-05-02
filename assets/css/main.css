@@ -8,11 +8,11 @@
 
 :root {
 	--baseColourDark:#1e1e1e;
-	--baseColourLight:#2d2d2d;
+	--baseColourLight:#2e343d;
 	--highlightGradientOne:#b722ff;
 	--highlightGradientTwo:#24d2fd;
-	--textBaseColour: #ffffff80;
-	--textBoldColour: #ffffffd0;
+	--textBaseColour: #ffffffad;
+	--textBoldColour: #ffffffe5;
 	--textSidebarColour: #ffffff50;
 	--sidebarButtonUnderlayColour: #ffffff10;
 }
