@@ -33,35 +33,73 @@
 					<section id="main" class="wrapper fade-down">
 						<div class="inner">
 							<h1 class="major">Side Projects</h1>
-							<h2><div id="ThirdPersonPaintGame">Third-Person Paint Game</div></h2>
+							<h2><div id="ThirdPersonPaintPlatformer">Third-Person Paint Platformer</div></h2>
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/KdmmWtrT1sc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+							<br/><br/>
 							<h3>Project Inspiration</h3>
-							<p>Some text.</p>
+							<p>The original inspiration for this little project came from a combination of playing <b>Splatoon</b> & <b>The Unfinished Swan</b>, as well as watching a 
+							fantastic <a href="https://www.youtube.com/watch?v=C7307qRmlMI&ab_channel=GDC">GDC talk given by John Nesky</a>, of <b>thatgamecompany</b>. The presentation 
+							covers the notoriously well-executed third-person camera of <b>Journey</b>, and as a programmer who had never made such a thing before, it was an 
+							appealling challenge.<br/><br/>
+							I wanted to try out the painting mechanic, because it also seemed like an interesting challenge and, honestly, I just wanted 
+							to know how it worked. As someone with no formal education in shaders at that point it seemed like witchcraft, and as much as the textureless art 
+							style of <b>The Unfinished Swan</b> works wonders for that game, I was really curious what it would look like with textures. Could I give the player the power 
+							to paint reality?</p>
 							<h3>Initial Goals</h3>
-							<p>Some text.</p>
+							<li>Replication of basic painting mechanics</li>
+							<li>Creation of a responsive and smooth third-person camera controller from scratch (ie. not using Cinemachine)</li>
+							<li>An accompanying character controller that facilitates the camera and painting mechanic</li>
+							<br/>
 							<h3>The Process</h3>
-							<p>Some text.</p>
+							<p>I started out with the camera, as I do on most of my projects these days. What special features would it need?</p>
+							<p>Setting the expectations of what I was building well ahead of time was a great tool to help with this process, and something I hope most game designers 
+							learn early on. With the knowledge of every state the camera would need to be in at any given time, I was able to map out the transitions between them and 
+							logistically solve the design questions ahead of time.</p>
+							<p>I figured the camera would only need to be in one of two states for my little demo, either aiming or relaxed. For the aiming state I would draw the camera in 
+							close over the player's shoulder and for the relaxed state it would return to a neutral position behind the player. However, both of these states would require the camera 
+							to avoid obstacles.</p>
+							<p>While addressing this complication, I learnt about SphereCast and used it to trace the shape of a capsule from my player outwards to the 
+							target position of the camera. Any hit along the way would be marked and cause the camera to smoothly draw in closer to the player. As a failsafe, I also perform a raycast 
+							in much the same way, so that if line of sight to the player is ever occluded entirely (therefore causing the camera to clip into a wall), I snap the 
+							camera forward the minimum distance to ensure this clipping never even happens, as shown.</p>
+							<span class="image fit" style="margin-bottom:0;padding-bottom:0;width:90%;height:90%;display:block;margin:auto;"><img src="images/SideProjects/ThirdPersonPaintPlatformer/CameraAvoidance.png" alt="A diagram showing how my camera avoids obstacles" style="border-radius:1em;" /></span>
+							<p style="text-align:center;"><i>A diagram showing the collision tests performed by the camera to keep it outside of the map geometry.</i></p>
+							<p>Anyway enough about the camera. For the painting part of the project I first needed a projectile to cause the impact. I was really inspired by the look of the coloured paints in 
+							<b>Portal 2</b> and wanted to give that sort of appearance a try for myself, but I wasn't prepared to sit down and try to write an implicit surface renderer to simulate that look 
+							so I found my own way with a relatively simple shader, that I ended up being really happy with. The shader gives a nice effect when moving, by displacing the noise along each axis 
+							proportionally to its movement on that axis, causing it to appear to interact with the air as it arcs towards its target.</p>
+							<span class="image fit" style="margin-bottom:0;padding-bottom:0;width:90%;height:90%;display:block;margin:auto;"><img src="images/SideProjects/ThirdPersonPaintPlatformer/PaintballShader.png" alt="The shader graph material I made for the paintballs" style="border-radius:1em;" /></span>
+							<p style="text-align:center;"><i>The shader graph material I made for the paintballs.</i></p>
+							<video style="border-radius:1em;display:block;margin:auto;" width=90% height=90% controls><source src="/videos/SideProjects/ThirdPersonPaintPlatformer/PaintballMaterial.mp4"></video>
+							<p style="text-align:center;"><i>The movement effects of the paintball material.</i></p>
+							<p>The painting mechanic itself ended up being much more of a learning curve than I had expected, and I first cloned the project repository from the <b>Splatoon</b> 
+							<a href="https://youtu.be/FR618z5xEiM">video by <b>Mix and Jam</b></a> and then began reading through and adapting it to suit my needs and figure out how it worked. 
+							In doing so I learnt about <b>Graphics.Blit()</b>, <b>UV Channels</b>, <b>Material Instancing</b>, <b>Masking Textures</b> and more. So while I can't claim the basic 
+							implementation to be my own, I did end up modifying almost everything else about it including the shader used by the paintball when it contacts a surface.</p>
+							<p>So let's dive into that. At its core, the painting system works by creating an instance of every material on every separate object each with it's own grayscale 
+							mask texture that gets written to with <b>Blit()</b> during gameplay. This represents where the paint is on the object, thanks to the power of UVs. So when a paintball 
+							contacts a surface it calls a function passing in it's current position to lookup this texture coordinate and write to its mask, therefore painting the surface.</p>
+							<span class="image fit" style="margin-bottom:0;padding-bottom:0;width:90%;height:90%;display:block;margin:auto;"><img src="images/SideProjects/ThirdPersonPaintPlatformer/PaintableShader.png" alt="The shader graph material I made for the paintable surfaces" style="border-radius:1em;" /></span>
+							<p style="text-align:center;"><i>Here's the shader graph for the Paintable material. It's pretty big.</i></p>
 							<h3>References Used</h3>
-							<p>Some text.</p>
+							<li><a href="https://youtu.be/C7307qRmlMI">"50 Game Camera Mistakes" - GDC</a></li>
+							<li><a href="https://youtu.be/FR618z5xEiM">"Recreating Splatoon's Ink System" - Mix and Jam</a></li>
+							<li><a href="https://youtu.be/YUWfHX_ZNCw">"Splatoon Painting Effect in Unity" - TNTC</a></li>
+							<br/>
+							<li><a href="https://en.wikipedia.org/wiki/Splatoon_(video_game)">Splatoon - Nintendo</a></li>
+							<li><a href="https://store.steampowered.com/app/1206430/The_Unfinished_Swan/">The Unfinished Swan - Giant Sparrow</a></li>
+							<li><a href="https://store.steampowered.com/app/620/Portal_2/">Portal 2 - Valve</a></li>
+							<br/>
+							<p>That's all for this one. It was fun to try out so many new areas of programming at once and I learnt a lot from it.
+							<br/>Cheers!</p>
 							<hr/>
 							<h2><div id="CellularAutomataLabyrinth">Cellular Automata Labyrinth</div></h2>
-							<h3>Project Inspiration</h3>
-							<p>Some text.</p>
-							<h3>Initial Goals</h3>
-							<p>Some text.</p>
-							<h3>The Process</h3>
-							<p>Some text.</p>
-							<h3>References Used</h3>
-							<p>Some text.</p>
+							<h3>This area is under construction, hold tight!</h3>
+							<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Procedural Maze Generator I made a while back after first discovering cellular automata. All algorithms by me. <a href="https://twitter.com/hashtag/proceduralgeneration?src=hash&amp;ref_src=twsrc%5Etfw">#proceduralgeneration</a> <a href="https://twitter.com/hashtag/madewithunity?src=hash&amp;ref_src=twsrc%5Etfw">#madewithunity</a> <a href="https://twitter.com/hashtag/indiedev?src=hash&amp;ref_src=twsrc%5Etfw">#indiedev</a> <a href="https://t.co/XSdXWhUnEw">pic.twitter.com/XSdXWhUnEw</a></p>&mdash; Prometheus (@Prometheus625) <a href="https://twitter.com/Prometheus625/status/1505090879593193473?ref_src=twsrc%5Etfw">March 19, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 							<hr/>
 							<h2><div id="ProceduralRoadGenerator">Procedural Road Generator</div></h2>
-							<h3>Project Inspiration</h3>
-							<p>Some text.</p>
-							<h3>Initial Goals</h3>
-							<p>Some text.</p>
-							<h3>The Process</h3>
-							<p>Some text.</p>
-							<h3>References Used</h3>
-							<p>Some text.</p>
+							<h3>This area is under construction, hold tight!</h3>
+							<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Drifting around the procedural void-space in my newest side project, Void Odyssey. <a href="https://twitter.com/hashtag/madewithunity?src=hash&amp;ref_src=twsrc%5Etfw">#madewithunity</a> <a href="https://twitter.com/hashtag/proceduralgeneration?src=hash&amp;ref_src=twsrc%5Etfw">#proceduralgeneration</a> <a href="https://twitter.com/hashtag/drifting?src=hash&amp;ref_src=twsrc%5Etfw">#drifting</a> <a href="https://twitter.com/hashtag/indiedev?src=hash&amp;ref_src=twsrc%5Etfw">#indiedev</a> <a href="https://t.co/fZTwb0FhCs">pic.twitter.com/fZTwb0FhCs</a></p>&mdash; Prometheus (@Prometheus625) <a href="https://twitter.com/Prometheus625/status/1505091677089792002?ref_src=twsrc%5Etfw">March 19, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 							<hr/>
 							<h2>Thank you for reading!</h2>
 							<p>Feel free to check out any of my other side projects above, or simply return to the home page.</p>
