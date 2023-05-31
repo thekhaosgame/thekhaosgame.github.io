@@ -33,23 +33,27 @@
 					<section id="main" class="wrapper fade-down">
 						<div class="inner">
 							<h1 class="major">Side Projects</h1>
+
+							<!-- Third Person Paint Platformer-->
 							<h2><div id="ThirdPersonPaintPlatformer">Third-Person Paint Platformer</div></h2>
 							<iframe width="560" height="315" src="https://www.youtube.com/embed/KdmmWtrT1sc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 							<br/><br/>
+							
 							<h3>Project Inspiration</h3>
 							<p>The original inspiration for this little project came from a combination of playing <b>Splatoon</b> & <b>The Unfinished Swan</b>, as well as watching a 
 							fantastic <a href="https://www.youtube.com/watch?v=C7307qRmlMI&ab_channel=GDC">GDC talk given by John Nesky</a>, of <b>thatgamecompany</b>. The presentation 
-							covers the notoriously well-executed third-person camera of <b>Journey</b>, and as a programmer who had never made such a thing before, it was an 
+							covers the notoriously well-executed third-person camera of <b>Journey</b>, and as a gameplay programmer who had never made such a thing before, it was an 
 							appealling challenge.<br/><br/>
-							I wanted to try out the painting mechanic, because it also seemed like an interesting challenge and, honestly, I just wanted 
-							to know how it worked. As someone with no formal education in shaders at that point it seemed like witchcraft, and as much as the textureless art 
-							style of <b>The Unfinished Swan</b> works wonders for that game, I was really curious what it would look like with textures. Could I give the player the power 
-							to paint reality?</p>
+							I wanted to try out the paint firing too as a means of discovering how it was achieved in other games with similar mechanics. As someone with no formal education 
+							in shaders at that point it seemed like magic, and as much as the textureless art style of <b>The Unfinished Swan</b> works wonders for that game, I 
+							was really curious if I could extend on the system to work with textures as well.</p>
+							
 							<h3>Initial Goals</h3>
-							<li>Replication of basic painting mechanics</li>
-							<li>Creation of a responsive and smooth third-person camera controller from scratch (ie. not using Cinemachine)</li>
-							<li>An accompanying character controller that facilitates the camera and painting mechanic</li>
+							<li>Replication of basic painting mechanics.</li>
+							<li>Creation of a responsive and smooth third-person camera controller from scratch (ie. not using Cinemachine).</li>
+							<li>An accompanying character controller that facilitates the camera and painting mechanic.</li>
 							<br/>
+							
 							<h3>The Process</h3>
 							<p>I started out with the camera, as I do on most of my projects these days. What special features would it need?</p>
 							<p>Setting the expectations of what I was building well ahead of time was a great tool to help with this process, and something I hope most game designers 
@@ -81,6 +85,7 @@
 							contacts a surface it calls a function passing in it's current position to lookup this texture coordinate and write to its mask, therefore painting the surface.</p>
 							<span class="image fit" style="margin-bottom:0;padding-bottom:0;width:90%;height:90%;display:block;margin:auto;"><img src="images/SideProjects/ThirdPersonPaintPlatformer/PaintableShader.png" alt="The shader graph material I made for the paintable surfaces" style="border-radius:1em;" /></span>
 							<p style="text-align:center;"><i>Here's the shader graph for the Paintable material. It's pretty big.</i></p>
+							
 							<h3>References Used</h3>
 							<li><a href="https://youtu.be/C7307qRmlMI">"50 Game Camera Mistakes" - GDC</a></li>
 							<li><a href="https://youtu.be/FR618z5xEiM">"Recreating Splatoon's Ink System" - Mix and Jam</a></li>
@@ -93,13 +98,87 @@
 							<p>That's all for this one. It was fun to try out so many new areas of programming at once and I learnt a lot from it.
 							<br/>Cheers!</p>
 							<hr/>
+							
+							<!-- Cellular Automata Labyrinth -->
 							<h2><div id="CellularAutomataLabyrinth">Cellular Automata Labyrinth</div></h2>
-							<h3>This area is under construction, hold tight!</h3>
-							<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Procedural Maze Generator I made a while back after first discovering cellular automata. All algorithms by me. <a href="https://twitter.com/hashtag/proceduralgeneration?src=hash&amp;ref_src=twsrc%5Etfw">#proceduralgeneration</a> <a href="https://twitter.com/hashtag/madewithunity?src=hash&amp;ref_src=twsrc%5Etfw">#madewithunity</a> <a href="https://twitter.com/hashtag/indiedev?src=hash&amp;ref_src=twsrc%5Etfw">#indiedev</a> <a href="https://t.co/XSdXWhUnEw">pic.twitter.com/XSdXWhUnEw</a></p>&mdash; Prometheus (@Prometheus625) <a href="https://twitter.com/Prometheus625/status/1505090879593193473?ref_src=twsrc%5Etfw">March 19, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/oIJyJnPv338" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+							<br/><br/>
+
+							<h3>Project Inspiration</h3>
+							<p>Early on during my study of game programming I was introduced to <b>Conway's Game of Life</b>, and cellular automata as funamental algorithms in computer science. 
+							The idea that such complex patterns could emerge and be manipulated from such simple rules operating across an entire grid was really interesting and while I didn't know 
+							it yet, this would ignite my passion for procedural generation for years to come.</p>
+							<p>The fragments left behind by the algorithm, and the way it swept across the grid manipulating existing data into a new form had me inspired to create something with a 
+							more constructive intent. Maybe I could generate a dungeon like this, or an entire world like <b>Terraria</b>?</p>
+
+							<h3>Initial Goals</h3>
+							<li>Experimentation with cellular automata, learning as much as possible!</li>
+							<li>Construction of a solvable maze using a custom rule set.</li>
+							<br/>
+
+							<h3>The Process</h3>
+							<p>I first built a really quick prototype of the <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Game of Life</a> in a C# Console application. It wasn't 
+							particularly fast but it worked well enough as a demo and the rules were easy to modify which is all that mattered at the time. The classic version of the algorithm follows 
+							these rules, regardless of edge or corner relation to the center tile:</p>
+							<ol>
+							<li><b>Any live cell with two or three live neighbours survives.</b>
+							<br/><i>This represents a healthy population.</i></li>
+							<li><b>Any dead cell with exactly three live neighbours becomes alive.</b>
+							<br/><i>This represents reproduction.</i></li>
+							<li><b>Any other live cells that don't satisfy rule 1 die in the next generation.</b>
+							<br/><i>This represents an oversized or insufficient population.</i></li>
+							</ol>
+							<p>Changing the numbers used in these rules yielded some interesting results and I added some new rules of my own into the mix as well until arriving on the final version 
+							which was used for the basis of the maze generation algorithm:</p>
+							<ol>
+							<li><b>Any cell with both X and Y coordinates as odd values dies in the next generation.</b>
+							<br/><i>This ensures the maze structure forms cleanly.</i></li>
+							<li><b>Any dead cell that does not satisfy rule 1 will become alive if its total neighbour count is 2 or less.</b>
+							<br/><i>This creates connective walls and reduces noisiness in the wall structures.</i></li>
+							<li><b>Any live cell with more neighbouring corners than edges will have a 50% chance of dying in the next generation.</b>
+							<br/><i>Dying solves this constraint instantly, but randomly living allows more interesting structures to form over time. Higher chances of living take 
+							longer to resolve but form more interesting pathways.</i></li>
+							<li><b>Repeat these steps on all cells until the previous generation is identical to the current generation.</b>
+							<br/><i>This means the algorithm has now stabilised.</i></li>
+							</ol>
+							<p>And that's it! Those new rules get us from random noise to structured corridors and winding passageways like this!</p>
+							<span class="image fit" style="margin-bottom:0;padding-bottom:0;width:90%;height:90%;display:block;margin:auto;"><img src="images/SideProjects/CellularAutomataLabyrinth/ProcessedNoise.png" alt="The result after applying the 4 generation rules to the noise" style="border-radius:1em;" /></span>
+							<p style="text-align:center;"><i>The result after applying the 4 generation rules to the boolean noise grid.</i></p>
+							<p>You might notice many of the walls (represented by the darker colour) either appear disconnected and often don't form complicated shapes that provide an interesting solving 
+							experience, or they seal in some areas entirely. I didn't want either of these things to happen, so I did some more processing afterwards to polish the result into a more 
+							effective labyrinth.</p>
+							<p>The first step was to randomly add some walls throughout the maze (at coordinates with even values for X and Y, ensuring no diagonal connections) to create more interesting 
+							junctions throughout the maze. I also dealt with some edge cases like a single wall with no neighbours (resolved by adding another wall to a random one of it's edges). 
+							Unfortunately this also doubled down on the second issue (inaccessible areas), and now I had to do some path verification.</p>
+							<p>I wanted the maze to be solved starting at one side of the screen and ending at the other, so I ran a looping iteration of 
+							<a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra's Algorithm</a> such that it would fill all available space from the starting point, and once it 
+							could no longer progress, it would take the closest point to the objective and break the wall to the right of it, opening up the path once again. This worked perfectly 
+							and ensured there were some choke points in the maze, while also guaranteeing its solvability. Finally this pathfinding operation was run in reverse from the end points of the 
+							previous iteration, ensuring all areas could access each other from everywhere. This allowed me to create a distinction between solvable and unsolvable regions, like so:</p>
+							<span class="image fit" style="margin-bottom:0;padding-bottom:0;width:90%;height:90%;display:block;margin:auto;"><img src="images/SideProjects/CellularAutomataLabyrinth/PathfindingIteration.png" alt="The separation of valid and invalid areas of the map after applying Dijkstra's Algorithm" style="border-radius:1em;" /></span>
+							<p style="text-align:center;"><i>The separation of valid and invalid areas of the map after applying Dijkstra's Algorithm.</i></p>
+							<p>Finally, following this I experimented with some ideas like creating rooms within the maze from the inaccessible regions, creating a blobby shoreline with accompanying ocean, 
+							and even making a shop room with different items that a player could buy. Though the final product used none of this, I'll include a short step by step through the prototype 
+							map generation just to show it all in action.</p>
+							<video style="border-radius:1em;display:block;margin:auto;" width=90% height=90% controls><source src="/videos/SideProjects/CellularAutomataLabyrinth/ComplexGeneration.mp4"></video>
+							<p style="text-align:center;"><i>This prototype map generation ended up mostly discarded, but I got to try some more cellular automata techniques!</i></p>
+							<br/>
+
+							<h3>References Used</h3>
+							<li><a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">"Conway's Game of Life" - Wikipedia</a></li>
+							<li><a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">"Dijkstra's Algorithm" - Wikipedia</a></li>
+							<br/>
+
+							<p>That's all for today. Since working on this first little foray into the field of procedural generation, it has since become one of 
+							my favourite topics in all of programming and I'm excited to take my skills even further in the future.
+							<br/>Cheers!</p>
 							<hr/>
+
+							<!-- Procedural Road Generator -->
 							<h2><div id="ProceduralRoadGenerator">Procedural Road Generator</div></h2>
 							<h3>This area is under construction, hold tight!</h3>
 							<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Drifting around the procedural void-space in my newest side project, Void Odyssey. <a href="https://twitter.com/hashtag/madewithunity?src=hash&amp;ref_src=twsrc%5Etfw">#madewithunity</a> <a href="https://twitter.com/hashtag/proceduralgeneration?src=hash&amp;ref_src=twsrc%5Etfw">#proceduralgeneration</a> <a href="https://twitter.com/hashtag/drifting?src=hash&amp;ref_src=twsrc%5Etfw">#drifting</a> <a href="https://twitter.com/hashtag/indiedev?src=hash&amp;ref_src=twsrc%5Etfw">#indiedev</a> <a href="https://t.co/fZTwb0FhCs">pic.twitter.com/fZTwb0FhCs</a></p>&mdash; Prometheus (@Prometheus625) <a href="https://twitter.com/Prometheus625/status/1505091677089792002?ref_src=twsrc%5Etfw">March 19, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 							<hr/>
 							<h2>Thank you for reading!</h2>
 							<p>Feel free to check out any of my other side projects above, or simply return to the home page.</p>
