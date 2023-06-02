@@ -43,9 +43,9 @@
 							<p>The original inspiration for this little project came from a combination of playing <b>Splatoon</b> & <b>The Unfinished Swan</b>, as well as watching a 
 							fantastic <a href="https://www.youtube.com/watch?v=C7307qRmlMI&ab_channel=GDC">GDC talk given by John Nesky</a>, of <b>thatgamecompany</b>. The presentation 
 							covers the notoriously well-executed third-person camera of <b>Journey</b>, and as a gameplay programmer who had never made such a thing before, it was an 
-							appealling challenge.<br/><br/>
-							I wanted to try out the paint firing too as a means of discovering how it was achieved in other games with similar mechanics. As someone with no formal education 
-							in shaders at that point it seemed like magic, and as much as the textureless art style of <b>The Unfinished Swan</b> works wonders for that game, I 
+							appealling challenge.</p>
+							<p>I wanted to try out the surface painting mechanics as a means of discovering how they are done in other games too, as someone with no formal education 
+							in shaders at that point it seemed like magic. As much as the textureless art style of <b>The Unfinished Swan</b> works wonders for that game, I 
 							was really curious if I could extend on the system to work with textures as well.</p>
 							
 							<h3>Initial Goals</h3>
@@ -54,35 +54,40 @@
 							<li>An accompanying character controller that facilitates the camera and painting mechanic.</li>
 							<br/>
 							
-							<h3>The Process</h3>
+							<h3>My first 3rd-person camera</h3>
 							<p>I started out with the camera, as I do on most of my projects these days. What special features would it need?</p>
-							<p>Setting the expectations of what I was building well ahead of time was a great tool to help with this process, and something I hope most game designers 
-							learn early on. With the knowledge of every state the camera would need to be in at any given time, I was able to map out the transitions between them and 
-							logistically solve the design questions ahead of time.</p>
-							<p>I figured the camera would only need to be in one of two states for my little demo, either aiming or relaxed. For the aiming state I would draw the camera in 
+							<p>Setting the <b>expectations</b> of what I was building well ahead of time was a great tool to help with this process, and something I'm sure most game designers 
+							use with their own projects. With the knowledge of every state the camera would need to be in at any given time, I was able to <b>map out the transitions</b> between them and 
+							<b>logistically solve the design questions</b> ahead of time.</p>
+							<p>I figured the camera would only need to be in one of two states for my little demo, either <b>aiming</b> or <b>relaxed</b>. For the aiming state I would draw the camera in 
 							close over the player's shoulder and for the relaxed state it would return to a neutral position behind the player. However, both of these states would require the camera 
-							to avoid obstacles.</p>
-							<p>While addressing this complication, I learnt about SphereCast and used it to trace the shape of a capsule from my player outwards to the 
-							target position of the camera. Any hit along the way would be marked and cause the camera to smoothly draw in closer to the player. As a failsafe, I also perform a raycast 
-							in much the same way, so that if line of sight to the player is ever occluded entirely (therefore causing the camera to clip into a wall), I snap the 
-							camera forward the minimum distance to ensure this clipping never even happens, as shown.</p>
+							to <b>avoid obstacles</b>.</p>
+							<p>While addressing this complication, I learnt about <b>SphereCast()</b> and used it to <b>trace the shape of a capsule</b> from my player outwards to the 
+							target position of the camera. Any <b>hit</b> along the way would be marked and cause the camera to <b>smoothly draw in closer</b> to the player. As a failsafe, I also perform a 
+							<b>Raycast()</b> in much the same way, so that if line of sight to the player is ever occluded entirely (as a result of fast movement that would cause the camera to <b>clip 
+							into geometry</b>), I snap the camera forward the <b>minimum distance</b> to ensure this clipping never even happens, as shown. The outcome is the minimal amount of snapping 
+							and maximal amount of <b>player agency</b> over the camera, which is most suitable to this style of gameplay.</p>
 							<span class="image fit" style="margin-bottom:0;padding-bottom:0;width:90%;height:90%;display:block;margin:auto;"><img src="images/SideProjects/ThirdPersonPaintPlatformer/CameraAvoidance.png" alt="A diagram showing how my camera avoids obstacles" style="border-radius:1em;" /></span>
 							<p style="text-align:center;"><i>A diagram showing the collision tests performed by the camera to keep it outside of the map geometry.</i></p>
-							<p>Anyway enough about the camera. For the painting part of the project I first needed a projectile to cause the impact. I was really inspired by the look of the coloured paints in 
-							<b>Portal 2</b> and wanted to give that sort of appearance a try for myself, but I wasn't prepared to sit down and try to write an implicit surface renderer to simulate that look 
-							so I found my own way with a relatively simple shader, that I ended up being really happy with. The shader gives a nice effect when moving, by displacing the noise along each axis 
-							proportionally to its movement on that axis, causing it to appear to interact with the air as it arcs towards its target.</p>
+							
+							<h3>Something to paint with</h3>
+							<p>For the painting mechanic, I first needed a convincing <b>projectile</b> to cause the impact. I was really inspired by the look of the coloured paints in 
+							<b>Portal 2</b> and wanted to give that sort of appearance a try for myself, but I wasn't prepared to sit down and try to write an <b>implicit surface renderer</b> to 
+							simulate that look so I found my own way with a relatively simple <b> mesh displacement shader</b>, that I ended up being really happy with. The shader gives a nice effect 
+							when moving, by <b>displacing</b> the vertices along each axis <b>proportionally</b> to its movement on that axis, causing it to appear to interact with the air as it arcs towards its target.</p>
 							<span class="image fit" style="margin-bottom:0;padding-bottom:0;width:90%;height:90%;display:block;margin:auto;"><img src="images/SideProjects/ThirdPersonPaintPlatformer/PaintballShader.png" alt="The shader graph material I made for the paintballs" style="border-radius:1em;" /></span>
 							<p style="text-align:center;"><i>The shader graph material I made for the paintballs.</i></p>
 							<video style="border-radius:1em;display:block;margin:auto;" width=90% height=90% controls><source src="/videos/SideProjects/ThirdPersonPaintPlatformer/PaintballMaterial.mp4"></video>
 							<p style="text-align:center;"><i>The movement effects of the paintball material.</i></p>
-							<p>The painting mechanic itself ended up being much more of a learning curve than I had expected, and I first cloned the project repository from the <b>Splatoon</b> 
+							
+							<h3>Painting on the canvas of reality</h3>
+							<p>The surface painting mechanic itself ended up being much more of a learning curve than I had expected. I first cloned the project repository from the <b>Splatoon</b> 
 							<a href="https://youtu.be/FR618z5xEiM">video by <b>Mix and Jam</b></a> and then began reading through and adapting it to suit my needs and figure out how it worked. 
-							In doing so I learnt about <b>Graphics.Blit()</b>, <b>UV Channels</b>, <b>Material Instancing</b>, <b>Masking Textures</b> and more. So while I can't claim the basic 
-							implementation to be my own, I did end up modifying almost everything else about it including the shader used by the paintball when it contacts a surface.</p>
-							<p>So let's dive into that. At its core, the painting system works by creating an instance of every material on every separate object each with it's own grayscale 
-							mask texture that gets written to with <b>Blit()</b> during gameplay. This represents where the paint is on the object, thanks to the power of UVs. So when a paintball 
-							contacts a surface it calls a function passing in it's current position to lookup this texture coordinate and write to its mask, therefore painting the surface.</p>
+							In doing so I learnt about <b>Graphics.Blit()</b>, <b>UV channels</b>, <b>material instancing</b>, <b>masking textures</b> and more. So while I can't claim the original 
+							implementation to be my own, I did end up modifying almost everything else about it including the <b>primary surface shader</b> used by the paintable surfaces.</p>
+							<p>So let's dive into that. At its core, the <b>painting system</b> works by creating an <b>instance of every material</b> on every separate object each with it's own <b>grayscale 
+							mask texture</b> that gets written to with <b>Blit()</b> during gameplay. This represents <b>where the paint is on the object</b>, thanks to the power of <b>UVs</b>. So when a paintball 
+							contacts a surface it calls a function passing in it's <b>current position</b> to lookup this <b>texture coordinate</b> and write to its <b>mask</b>, therefore painting the surface.</p>
 							<span class="image fit" style="margin-bottom:0;padding-bottom:0;width:90%;height:90%;display:block;margin:auto;"><img src="images/SideProjects/ThirdPersonPaintPlatformer/PaintableShader.png" alt="The shader graph material I made for the paintable surfaces" style="border-radius:1em;" /></span>
 							<p style="text-align:center;"><i>Here's the shader graph for the Paintable material. It's pretty big.</i></p>
 							
@@ -96,30 +101,30 @@
 							<li><a href="https://store.steampowered.com/app/620/Portal_2/">Portal 2 - Valve</a></li>
 							<br/>
 							<p>That's all for this one. It was fun to try out so many new areas of programming at once and I learnt a lot from it.
-							<br/>Cheers!</p>
+							<br/><br/>Cheers!</p>
 							<hr/>
 							
 							<!-- Cellular Automata Labyrinth -->
 							<h2><div id="CellularAutomataLabyrinth">Cellular Automata Labyrinth</div></h2>
-							<iframe width="560" height="315" src="https://www.youtube.com/embed/oIJyJnPv338" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/uww_ZPRvaAk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 							<br/><br/>
 
 							<h3>Project Inspiration</h3>
-							<p>Early on during my study of game programming I was introduced to <b>Conway's Game of Life</b>, and cellular automata as funamental algorithms in computer science. 
-							The idea that such complex patterns could emerge and be manipulated from such simple rules operating across an entire grid was really interesting and while I didn't know 
-							it yet, this would ignite my passion for procedural generation for years to come.</p>
-							<p>The fragments left behind by the algorithm, and the way it swept across the grid manipulating existing data into a new form had me inspired to create something with a 
-							more constructive intent. Maybe I could generate a dungeon like this, or an entire world like <b>Terraria</b>?</p>
+							<p>Early on during my study of game programming I was introduced to <b>Conway's Game of Life</b>, and <b>cellular automata</b> as funamental algorithms in computer science. 
+							The idea that such <b>complex patterns</b> could emerge and be manipulated from such <b>simple rules</b> operating across an entire grid was really interesting and while I didn't know 
+							it yet, this would ignite my passion for <b>procedural generation</b> for years to come.</p>
+							<p>The <b>fragments</b> left behind by the algorithm, and the way it swept across the grid <b>manipulating existing data</b> into a new form had me inspired to create something with a 
+							more <b>constructive intent</b>. Maybe I could generate a dungeon like this, or an entire world like <b>Terraria</b>?</p>
 
 							<h3>Initial Goals</h3>
 							<li>Experimentation with cellular automata, learning as much as possible!</li>
 							<li>Construction of a solvable maze using a custom rule set.</li>
 							<br/>
 
-							<h3>The Process</h3>
-							<p>I first built a really quick prototype of the <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Game of Life</a> in a C# Console application. It wasn't 
-							particularly fast but it worked well enough as a demo and the rules were easy to modify which is all that mattered at the time. The classic version of the algorithm follows 
-							these rules, regardless of edge or corner relation to the center tile:</p>
+							<h3>Transforming the Game of Life</h3>
+							<p>I first built a really quick <b>prototype</b> of the <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Game of Life</a> in a <b>C# console application</b>. 
+							It wasn't particularly fast but it worked well enough as a demo and the rules were easy to modify which is all that mattered at the time. The classic version of the <b>algorithm</b> 
+							follows these <b>three basic rules</b>:</p>
 							<ol>
 							<li><b>Any live cell with two or three live neighbours survives.</b>
 							<br/><i>This represents a healthy population.</i></li>
@@ -128,38 +133,43 @@
 							<li><b>Any other live cells that don't satisfy rule 1 die in the next generation.</b>
 							<br/><i>This represents an oversized or insufficient population.</i></li>
 							</ol>
-							<p>Changing the numbers used in these rules yielded some interesting results and I added some new rules of my own into the mix as well until arriving on the final version 
-							which was used for the basis of the maze generation algorithm:</p>
+							<p>Changing the numbers used in these rules yielded some interesting results and I added some <b>new rules of my own</b> into the mix as well until arriving at the final 
+							version which was used for the basis of the <b>maze generation algorithm</b>:</p>
 							<ol>
 							<li><b>Any cell with both X and Y coordinates as odd values dies in the next generation.</b>
 							<br/><i>This ensures the maze structure forms cleanly.</i></li>
 							<li><b>Any dead cell that does not satisfy rule 1 will become alive if its total neighbour count is 2 or less.</b>
 							<br/><i>This creates connective walls and reduces noisiness in the wall structures.</i></li>
-							<li><b>Any live cell with more neighbouring corners than edges will have a 50% chance of dying in the next generation.</b>
+							<li><b>Any live cell with more neighbouring corners than edges will have a random chance of dying in the next generation.</b>
 							<br/><i>Dying solves this constraint instantly, but randomly living allows more interesting structures to form over time. Higher chances of living take 
 							longer to resolve but form more interesting pathways.</i></li>
 							<li><b>Repeat these steps on all cells until the previous generation is identical to the current generation.</b>
 							<br/><i>This means the algorithm has now stabilised.</i></li>
 							</ol>
-							<p>And that's it! Those new rules get us from random noise to structured corridors and winding passageways like this!</p>
+							<p>And that's it! Those new rules get us from <b>random noise</b> to <b>structured intersections</b> and <b>winding passageways</b> like this!</p>
 							<span class="image fit" style="margin-bottom:0;padding-bottom:0;width:90%;height:90%;display:block;margin:auto;"><img src="images/SideProjects/CellularAutomataLabyrinth/ProcessedNoise.png" alt="The result after applying the 4 generation rules to the noise" style="border-radius:1em;" /></span>
 							<p style="text-align:center;"><i>The result after applying the 4 generation rules to the boolean noise grid.</i></p>
-							<p>You might notice many of the walls (represented by the darker colour) either appear disconnected and often don't form complicated shapes that provide an interesting solving 
-							experience, or they seal in some areas entirely. I didn't want either of these things to happen, so I did some more processing afterwards to polish the result into a more 
-							effective labyrinth.</p>
-							<p>The first step was to randomly add some walls throughout the maze (at coordinates with even values for X and Y, ensuring no diagonal connections) to create more interesting 
-							junctions throughout the maze. I also dealt with some edge cases like a single wall with no neighbours (resolved by adding another wall to a random one of it's edges). 
-							Unfortunately this also doubled down on the second issue (inaccessible areas), and now I had to do some path verification.</p>
-							<p>I wanted the maze to be solved starting at one side of the screen and ending at the other, so I ran a looping iteration of 
-							<a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra's Algorithm</a> such that it would fill all available space from the starting point, and once it 
-							could no longer progress, it would take the closest point to the objective and break the wall to the right of it, opening up the path once again. This worked perfectly 
-							and ensured there were some choke points in the maze, while also guaranteeing its solvability. Finally this pathfinding operation was run in reverse from the end points of the 
-							previous iteration, ensuring all areas could access each other from everywhere. This allowed me to create a distinction between solvable and unsolvable regions, like so:</p>
+
+							<h3>Improving the labyrinth</h3>
+							<p>You might notice many of the walls (represented by the darker colour) either appear <b>disconnected</b> and often don't form <b>complicated shapes</b> that provide an interesting 
+							solving experience, or they <b>seal in some areas entirely</b>. I didn't want either of these things to happen, so I did some more <b>algorithmic processing</b> afterwards 
+							to polish the result into a more effective labyrinth.</p>
+							<p>The next step was to <b>distribute some additional walls</b> throughout the maze (at <b>coordinates with even values for X and Y, ensuring no diagonal connections</b>) to create 
+							more interesting <b>junctions</b> throughout the maze. I also dealt with some edge cases like a single wall with no neighbours (resolved by adding another wall to a random one of 
+							it's edges). Unfortunately this also doubled down on the second issue (<b>inaccessible areas</b>), and now I had to do some <b>path verification</b>.</p>
+							<p>I wanted the maze to be solved starting at one side of the screen and ending at the other, so I ran a <b>looping iteration</b> of 
+							<a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra's Algorithm</a> such that it would <b>fill all available space</b> from the starting point, and once it 
+							could no longer progress, it would take the <b>closest point to the objective</b> and break the wall to the right of it, opening up the path once again. This worked perfectly 
+							and ensured there were some <b>choke points</b> in the maze, while also <b>guaranteeing its solvability</b>. Finally this pathfinding operation was run once in <b>reverse</b> from 
+							the <b>end points of the previous iteration</b>, ensuring all areas could access each other from everywhere. This allowed me to create a <b>distinction</b> between <b>solvable</b> 
+							and <b>unsolvable regions</b>, like so:</p>
 							<span class="image fit" style="margin-bottom:0;padding-bottom:0;width:90%;height:90%;display:block;margin:auto;"><img src="images/SideProjects/CellularAutomataLabyrinth/PathfindingIteration.png" alt="The separation of valid and invalid areas of the map after applying Dijkstra's Algorithm" style="border-radius:1em;" /></span>
 							<p style="text-align:center;"><i>The separation of valid and invalid areas of the map after applying Dijkstra's Algorithm.</i></p>
-							<p>Finally, following this I experimented with some ideas like creating rooms within the maze from the inaccessible regions, creating a blobby shoreline with accompanying ocean, 
-							and even making a shop room with different items that a player could buy. Though the final product used none of this, I'll include a short step by step through the prototype 
-							map generation just to show it all in action.</p>
+							
+							<h3>Overscoping, then back to essentials</h3>
+							<p>Following this I experimented with some ideas like <b>creating rooms</b> within the maze from the inaccessible regions, creating a blobby <b>shoreline with accompanying ocean</b>, 
+							and even making a <b>shop room</b> with different items that a player could buy. Though the final product used none of this, I'll include a short step by step through the <b>prototype 
+							map generation</b> just to show it all in action.</p>
 							<video style="border-radius:1em;display:block;margin:auto;" width=90% height=90% controls><source src="/videos/SideProjects/CellularAutomataLabyrinth/ComplexGeneration.mp4"></video>
 							<p style="text-align:center;"><i>This prototype map generation ended up mostly discarded, but I got to try some more cellular automata techniques!</i></p>
 							<br/>
@@ -168,16 +178,87 @@
 							<li><a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">"Conway's Game of Life" - Wikipedia</a></li>
 							<li><a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">"Dijkstra's Algorithm" - Wikipedia</a></li>
 							<br/>
+							<li><a href="https://store.steampowered.com/app/105600/Terraria/">Terraria - Re-Logic</a></li>
+							<br/>
 
 							<p>That's all for today. Since working on this first little foray into the field of procedural generation, it has since become one of 
 							my favourite topics in all of programming and I'm excited to take my skills even further in the future.
-							<br/>Cheers!</p>
+							<br/><br/>Cheers!</p>
 							<hr/>
 
 							<!-- Procedural Road Generator -->
 							<h2><div id="ProceduralRoadGenerator">Procedural Road Generator</div></h2>
-							<h3>This area is under construction, hold tight!</h3>
-							<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Drifting around the procedural void-space in my newest side project, Void Odyssey. <a href="https://twitter.com/hashtag/madewithunity?src=hash&amp;ref_src=twsrc%5Etfw">#madewithunity</a> <a href="https://twitter.com/hashtag/proceduralgeneration?src=hash&amp;ref_src=twsrc%5Etfw">#proceduralgeneration</a> <a href="https://twitter.com/hashtag/drifting?src=hash&amp;ref_src=twsrc%5Etfw">#drifting</a> <a href="https://twitter.com/hashtag/indiedev?src=hash&amp;ref_src=twsrc%5Etfw">#indiedev</a> <a href="https://t.co/fZTwb0FhCs">pic.twitter.com/fZTwb0FhCs</a></p>&mdash; Prometheus (@Prometheus625) <a href="https://twitter.com/Prometheus625/status/1505091677089792002?ref_src=twsrc%5Etfw">March 19, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/_1MImRFIpZs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+							<br/><br/>
+
+							<h3>Project Inspiration</h3>
+							<p>This little driving game came about as a fusion between the level generation of <b>Impossible Road</b> and the character controller of <b>Mario Kart</b>. Responsive 
+							controls are notoriously inherent to <b>Nintendo</b> games and the <b>Mario Kart</b> games are no exception. As something I grew up playing, the kart controls feel second 
+							nature to me, often triggering a <a href="https://en.wikipedia.org/wiki/Flow_(psychology)">"flow-like"</a> state of focus. I wanted to try combining this feeling with some 
+							kind of <b>endless procedural track</b>, to keep things feeling unpredictable but fair, and allow the player to zone out and cruise as long as they wanted.</p>
+
+							<h3>Initial Goals</h3>
+							<li>Real-time procedural road mesh generation, presenting an adequate level of challenge and readbility.</li>
+							<li>Creation of an intuitive and responsive vehicle controller with simple arcade-like controls.</li>
+							<br/>
+
+							<h3>Creating an infinite road</h3>
+							<p>To create a smooth, endless track I could have followed the conventional wisdom and used <b>Splines</b>, but I wanted to try something a bit different this time. 
+							<b>Perlin Noise</b> had the sort of "landscape" I was looking for in my track, a good mix of <b>predictable</b> and <b>unpredictable</b> with a nice <b>distribution of 
+							values</b> that could be <b>easily manipulated</b> to suit my needs. Forming the basis of the track, is a <b>backbone</b> generated by moving from point to point based 
+							on sampling Perlin Noise in a straight line, and mapping it to an angle representing the <b>next direction to step</b>. The <b>frequency</b> and <b>amplitude</b> of the 
+							noise can be configured to adjust the <b>complexity</b> of the track in various ways too, where the <b>frequency</b> adjusts how often the track turns and the 
+							<b>amplitude</b> affects the strength of each turn. Each step creates a <b>vertex</b> along this path, and from there I take the <b>cross product</b> between the 
+							forward (ie. <b>track tangent</b>) vector of each point and the world-up vector to produce the extruded edges of the road.</p>
+							<span class="image fit" style="margin-bottom:0;padding-bottom:0;width:90%;height:90%;display:block;margin:auto;"><img src="images/SideProjects/ProceduralRoadGenerator/NoiseTrackEffects.png" alt="The effects of Perlin Noise on track generation" style="border-radius:1em;" /></span>
+							<p style="text-align:center;"><i>The effects of Perlin Noise on track generation, note the values increasing / decreasing as the track veers right / left.</i></p>
+							<p>I also added a setting to generate a <b>camber</b> in the road based on the <b>direction</b> and <b>intensity</b> of its current bend (calculated based on the comparison 
+							between the previous and current <b>vertex forward</b> directions). Then, with this <b>floating point value</b> representing the turn of the road, I simply <b>rotate the 
+							edge points around the backbone</b> proportionally to this value. As with the real-world, this camber allows vehicles to steer through the corner more easily by tilting 
+							the road such that <b>the change in velocity required</b> to move around the bend <b>aligns more with the contact points on the road</b>, thus <b>reducing slippage and increasing traction</b>.</p>
+							<video style="border-radius:1em;display:block;margin:auto;" width=90% height=90% controls><source src="/videos/SideProjects/ProceduralRoadGenerator/RoadCamber.mp4"></video>
+							<p style="text-align:center;"><i>Here's how the camber controls work in-editor, 0.0 means the camber is turned off and 0.3 is a practical maximum.</i></p>
+							<br/>
+							<p>Finally, I did a visual pass on the road to increase its <b>readability</b> at high speeds, and make it feel a little more like an actual road. First I set up a 
+							<b>Line Renderer</b> with a dotted line texture to follow the <b>backbone path</b> laid out by the mesh. Then after playtesting a bit and falling off the road quite a 
+							few times, I added some <b>illuminated edge lines</b> to the road with 2 more <b>Line Renderers</b>, this time with a <b>scrolling glow colour</b> determined by <b>sampling 
+							a gradient</b> with a time-based offset. Finally I created a basic <b>Particle System</b> of dust-like specks that would float around the environment and give the void a 
+							few more <b>reference points</b> to help the player accurately judge their velocity on the road.</p>
+							
+							<h3>Building an arcade-like vehicle controller</h3>
+							<p>While researching different vehicle controllers I came across this interesting concept in <a href="https://twitter.com/KenneyNL/status/1107783904784715788">a tweet from 
+							KenneyNL</a> showcasing their own arcade-like vehicle controller. In the video, they show how the car is a actually just a simple <b>Rigidbody</b> sphere being rolled around 
+							with various forces. This seemed like a perfect analogue for the physics of the kart, as I definitely didn't want to go overboard with suspension simulations and per wheel 
+							friction forces or anything like that.</p>
+							<video style="border-radius:1em;display:block;margin:auto;" width=90% height=90% controls><source src="/videos/SideProjects/ProceduralRoadGenerator/ColliderDriving.mp4"></video>
+							<p style="text-align:center;"><i>A look behind the scenes at the basic car collision setup and the real-time generation of the track.</i></p>
+							<br/>
+							<p>Once I'd got the ball rolling (see what I did there?), I worked on creating a <b>drift/boost mechanic</b>. While Mario's drift increments his boosts in <b>2-3 discrete 
+							steps</b>, I wanted to try having a <b>continuous bar</b> that filled while drifting and could deplete over time when boosting. Like Mario however, mine charges faster when you 
+							steer harder into a corner, meaning that <b>moment of tension is rewarded with a big burst of speed</b> afterwards. The physics of drifting was deceptively simple to work out, 
+							when you <b>initiate a drift</b>, the <b>direction you are currently steering</b> is recorded and your <b>range of steering is remapped to face that direction</b>. To give 
+							a little perspective to this, the <b>regular range</b> of steering is (-1.0, 1.0) whereas the <b>drifting range</b> of steering is (0.2, 2.0), thus allowing you to <b>turn twice as 
+							hard</b> in a drift, but also enforcing a <b>minimum steer</b> for each drift as well. The driving forces at play actually <b>remain the same</b> while drifting too, but the vehicle 
+							model is <b>interpolated to be slightly slanted</b> during this action so you appear to move side-on towards the direction of motion.</p>
+							<p>As for the physics I ended up settling on, they were relatively straight-forward. <b>Acceleration</b> / <b>deceleration</b> is handled by calling <b>Rigidbody.AddForce()</b> 
+							on the sphere in the current direction of steering, and the steering itself is a <b>Lerp()</b> mapped to a curve that increases strength over time to make the steering feel 
+							smoother without sacrificing on its responsiveness, <b>SmoothDamp()</b> would probably work here too.</p>
+							<p>As for the actual car itself, I picked up a basic low-poly vehicle model from <a href="https://kenney.nl/assets/car-kit">KenneyNL</a>, and added a downward <b>Raycast()</b> to settle 
+							it smoothly on the road mesh's <b>Normal Vector</b>. Then set up a <b>Trail Renderer</b> on each wheel to indicate when the player is drifting, and a little <b>Lerp()</b> rotation on 
+							the front wheels when steering.</p>
+
+							<h3>References Used</h3>
+							<li><a href="https://en.wikipedia.org/wiki/Spline_(mathematics)">"Spline (Mathematics)" - Wikipedia</a></li>
+							<li><a href="https://en.wikipedia.org/wiki/Perlin_noise">"Perlin Noise" - Wikipedia</a></li>
+							<li><a href="https://en.wikipedia.org/wiki/Camber_angle">"Camber Angle" - Wikipedia</a></li>
+							<br/>
+							<li><a href="https://www.nintendo.com.au/games/nintendo-switch/mario-kart-8-deluxe">Mario Kart 8 - Nintendo</a></li>
+							<li><a href="https://apps.apple.com/au/app/impossible-road/id608707318">Impossible Road - WONDERFUL LASERS</a></li>
+							<br/>
+
+							<p>That's all for this one. I'm really happy with the end result, and I'd love to make it into a more polished and complete game one day. There's tons of room to expand 
+							on the track generation systems and the vehicle too.
+							<br/><br/>Cheers!</p>
 
 							<hr/>
 							<h2>Thank you for reading!</h2>
