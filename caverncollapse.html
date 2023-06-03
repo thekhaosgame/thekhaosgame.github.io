@@ -47,19 +47,19 @@
 					<li><b>Release Date:</b> June 11, 2022</li>
 					<hr/>
 					<h2>Overview</h2>
-					<h3>Game</h3>
-					<p>Cavern Collapse is a <b>rogue-like 2D platformer</b> about descending into an everchanging <b>procedural cavern</b> to uncover a hidden treasure in the depths. 
-					Each run the player passes through <b>5 different stages of variable difficulty</b>, each different from the one that came before.
-					<b>Bounce</b>, <b>dash</b> and <b>climb</b> your way up <b>ladders</b>, across <b>platforms</b> and between <b>spikes</b> as you continue your descent into the abyss.
-					The game also comes with an included <b>level editor</b> which can be used to "teach" the procedural generator used for level creation in-game, thus allowing 
+					<h3>Gameplay</h3>
+					<p>Cavern Collapse is a rogue-like 2D platformer about descending into an everchanging procedural cavern to uncover a hidden treasure in the depths. 
+					Each run the player passes through 5 different stages of variable difficulty, each different from the one that came before.
+					Bounce, dash and climb your way up ladders, across platforms and between spikes as you continue your descent into the abyss.
+					The game also comes with an included level editor which can be used to "teach" the procedural generator used for level creation in-game, thus allowing 
 					the player to collaborate with the game's code and influence the kind of levels they will face during gameplay.</p>
 					<iframe width="560" height="315" src="https://www.youtube.com/embed/Hzmeue5eehE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 					<br/><br/>
 					<h3>Production</h3>
-					<p>The game was designed, developed and produced <b>solely by myself</b> over the course of <b>6 weeks</b>, with music by <b>Harry Towell (aka. Magnofon)</b> and most of the original art 
-					and sounds by <b>KenneyNL</b>. The game was originally created for the Complex Game Systems assessment in the <b>second year of my programming course at AIE</b>. The project came about 
-					as a means of developing a <b>modular implementation of the Wave Function Collapse algorithm</b>, which I'll be covering in more detail later in this write-up. Over the course 
-					of the project, I kept myself on schedule by using an ongoing list of tasks ordered by priority and updated daily, as well as using Git for version control between <b>on-campus</b> and <b>remote work</b> from home.</p>
+					<p>The game was designed, developed and produced solely by myself over the course of 6 weeks, with music by Harry Towell (aka. Magnofon) and most of the original art 
+					and sounds by KenneyNL. The game was originally created for the Complex Game Systems assessment in the second year of my programming course at AIE. The project came about 
+					as a means of developing a modular implementation of the Wave Function Collapse algorithm, which I'll be covering in more detail later in this write-up. Over the course 
+					of the project, I kept myself on schedule by using an ongoing list of tasks ordered by priority and updated daily, as well as using Git for version control between on-campus and remote work from home.</p>
 					<hr/>
 					<h2>Contribution</h2>
 					<h3>On this project I contributed...</h3>
@@ -71,71 +71,71 @@
 					<hr/>
 					<h2>About the code</h2>
 					<h3>Wave Function Collapse</h3>
-					<p>The primary algorithm used for choosing which tiles to place when generating a level is called <b>Wave Function Collapse</b>. The basis of the algorithm follows a few 
+					<p>The primary algorithm used for choosing which tiles to place when generating a level is called Wave Function Collapse. The basis of the algorithm follows a few 
 					simple steps:</p>
 					<ol><i>
-					<li>The empty tile spaces are <b>evaluated</b> to find the one with the <b>fewest remaining valid possibilities</b> based on the neighbouring tiles.</li>
-					<li>A tile is then <b>chosen</b> from the list of possibilities, this list is called a superposition.</li>
-					<li>The tile is <b>placed</b>, and spaces surrounding this tile have their <b>superposition list updated</b>.</li>
+					<li>The empty tile spaces are evaluated to find the one with the fewest remaining valid possibilities based on the neighbouring tiles.</li>
+					<li>A tile is then chosen from the list of possibilities, this list is called a superposition.</li>
+					<li>The tile is placed, and spaces surrounding this tile have their superposition list updated.</li>
 					</i></ol>
-					<p>This process is repeated until the <b>entire grid is filled</b>, or <b>no superpositions remain</b> in any list in the grid. The end result of this algorithm is a <b>locally coherent 
-					arrangement</b> of tiles, in which the connection between neighbouring tiles is always valid. This is desirable for procedural level creation, as players 
-					have <b>a set of expectations about the layout</b> of a given stage. For example, spikes should be attached to surfaces and walls should connect together cleanly.</p>
-					<p>To resolve (or <b>"collapse"</b>) a superposition into a tile to be placed in the level, first a <b>union operation</b> is completed between the <b>superposition sets of all
-					neighbouring tiles</b>, to construct a new combined list for the uncollapsed target tile. To complete this, each list is <b>compared</b>, and as long as an element <b>exists within
-					each of the lists</b>, their <b>weights are added together</b> and written to the superposition set for this space. Then a <b>weighted random</b> is performed between all of the 
-					elements in this combined list, to choose the final tile to <b>collapse this set into</b>.</p>
+					<p>This process is repeated until the entire grid is filled, or no superpositions remain in any list in the grid. The end result of this algorithm is a locally coherent 
+					arrangement of tiles, in which the connection between neighbouring tiles is always valid. This is desirable for procedural level creation, as players 
+					have a set of expectations about the layout of a given stage. For example, spikes should be attached to surfaces and walls should connect together cleanly.</p>
+					<p>To resolve (or "collapse") a superposition into a tile to be placed in the level, first a union operation is completed between the superposition sets of all
+					neighbouring tiles, to construct a new combined list for the uncollapsed target tile. To complete this, each list is compared, and as long as an element exists within
+					each of the lists, their weights are added together and written to the superposition set for this space. Then a weighted random is performed between all of the 
+					elements in this combined list, to choose the final tile to collapse this set into.</p>
 					<span class="image fit" style="margin-bottom:0;padding-bottom:0;width:90%;height:90%;display:block;margin:auto;"><img src="images/CavernCollapse/Diagram.png" alt="A diagram of one iteration of the WFC algorithm" style="border-radius:1em;" /></span>
 					<p style="text-align:center;"><i>An iteration of the Wave Function Collapse algorithm, step by step.</i></p>
-					<p>But where do these superposition lists even <b>come from</b>?</p>
-					<p>In the case of my implementation, a <b>ruleset</b> is constructed which encompasses all of the <b>directional superpositions</b> of each tile variant in the game's <b>tileset</b>, 
-					(eg. Foliage1/Above/Platform2). These <b>rules are derived from the arrangement of tiles</b> in a set of pre-made examples. In my case, I built a small <b>level editor</b> to construct 
-					these example stages, which are used to <b>organically derive the rules</b> for tile arrangement during level generation, thus producing <b>natural-looking levels</b>.</p>
+					<p>But where do these superposition lists even come from?</p>
+					<p>In the case of my implementation, a ruleset is constructed which encompasses all of the directional superpositions of each tile variant in the game's tileset, 
+					(eg. Foliage1/Above/Platform2). These rules are derived from the arrangement of tiles in a set of pre-made examples. In my case, I built a small level editor to construct 
+					these example stages, which are used to organically derive the rules for tile arrangement during level generation, thus producing natural-looking levels.</p>
 					<video style="border-radius:1em;display:block;margin:auto;" width=90% height=90% controls><source src="/videos/CavernCollapse/DefaultSamples.mp4"></video>
 					<p style="text-align:center;"><i>The samples used to train the level generation algorithm in Cavern Collapse.</i></p>
-					<p>The ruleset is stored as a <b>3-dimensional array of integers</b>, where the <b>first dimension</b> is the tile ID of the central space, the <b>second dimension</b> represents the direction 
-					of the neighbour in relation to the center, and the <b>third dimension</b> stores the tile ID of the neighbour space. When accessed, this 3D array returns the <b>number of times 
-					this arrangement occurs</b> in the example stages which were analysed (ie. the <b>weight</b> of this tile arrangement). This setup allows you to query whether a tile placement is <b>valid</b> (if the weight is above 0), but 
-					also how <b>effectively logically</b> it follows the <b>patterns</b> in the sample data (higher = better). For example, if you wanted to know what could be placed <b>above</b> a <b>gem</b> and how <b>commonly</b> 
+					<p>The ruleset is stored as a 3-dimensional array of integers, where the first dimension is the tile ID of the central space, the second dimension represents the direction 
+					of the neighbour in relation to the center, and the third dimension stores the tile ID of the neighbour space. When accessed, this 3D array returns the number of times 
+					this arrangement occurs in the example stages which were analysed (ie. the weight of this tile arrangement). This setup allows you to query whether a tile placement is valid (if the weight is above 0), but 
+					also how effectively logically it follows the patterns in the sample data (higher = better). For example, if you wanted to know what could be placed above a gem and how commonly 
 					this occurs, then you could find that information!</p>
 					<h3>Level Generation</h3>
-					<p>The <b>level generator</b> I made for Cavern Collapse took up the majority of <b>development time</b>, as it was likely the <b>most complex system</b> in the project. It takes <b>30 different steps</b>
-					to generate each stage, heavily implementing <b>Wave Function Collapse</b> for most of it.</p>
-					<p>Here is a distilled rundown of the <b>most critical steps</b>:</p>
+					<p>The level generator I made for Cavern Collapse took up the majority of development time, as it was likely the most complex system in the project. It takes 30 different steps
+					to generate each stage, heavily implementing Wave Function Collapse for most of it.</p>
+					<p>Here is a distilled rundown of the most critical steps:</p>
 					<ol><i>
-					<li><b>Load</b> sample data and construct ruleset</li>
-					<li>Create top-to-bottom <b>room sequence</b>, similarly to Spelunky</li>
-					<li>Create left-to-right <b>reserved path</b> within each room</li>
-					<li><b>Connect rooms</b> vertically by reserving tiles through connecting floors and ceilings</li>
-					<li><b>Build border</b> around map and <b>along the floor</b> of each room</li>
-					<li>Wave function collapse for <b>walls</b>, then cleanup</li>
-					<li>Wave function collapse for <b>platforms/ladders</b>, then cleanup</li>
-					<li>Wave function collapse for <b>spikes/gems</b>, then cleanup</li>
-					<li><b>Verification</b> for gems and path <b>accessibility</b></li>
-					<li>Wave function collapse for <b>decorations</b>, then cleanup</li>
-					<li>Place <b>start</b> and <b>exit doors</b></li>
-					<li>Generate colliders, place prefabs like gems and the player, and then <b>final setup</b></li>
+					<li>Load sample data and construct ruleset</li>
+					<li>Create top-to-bottom room sequence, similarly to Spelunky</li>
+					<li>Create left-to-right reserved path within each room</li>
+					<li>Connect rooms vertically by reserving tiles through connecting floors and ceilings</li>
+					<li>Build border around map and along the floor of each room</li>
+					<li>Wave function collapse for walls, then cleanup</li>
+					<li>Wave function collapse for platforms/ladders, then cleanup</li>
+					<li>Wave function collapse for spikes/gems, then cleanup</li>
+					<li>Verification for gems and path accessibility</li>
+					<li>Wave function collapse for decorations, then cleanup</li>
+					<li>Place start and exit doors</li>
+					<li>Generate colliders, place prefabs like gems and the player, and then final setup</li>
 					</i></ol>
-					<p>Here's a short clip of what it looks like when you put all of that together. This is a <b>beginner-level</b> cavern, the smallest level variant in the game.</p>
+					<p>Here's a short clip of what it looks like when you put all of that together. This is a beginner-level cavern, the smallest level variant in the game.</p>
 					<video style="border-radius:1em;display:block;margin:auto;" width=90% height=90% controls><source src="/videos/CavernCollapse/LevelGeneration.mp4"></video>
 					<p style="text-align:center;"><i>The game generating a small cavern, slowed down a bit.</i></p>
 					<h3>Working with The Algorithm</h3>
-					<p>The reason that <b>wave function collapse</b> is so powerful is that in a way, it's process can be quite similar to a that of a <b>human solving a puzzle</b>, or <b>designing a level</b>. 
-					It takes the knowledge of the <b>current state of the puzzle</b> and the <b>available pieces</b> into account when working on the solution. In the case of <b>programming</b> this, the generator needed 
-					to have some idea of where to <b>start from</b>, so to ensure a <b>valid path</b> through the level and appropriate <b>wall structure</b> as the biggest priorities, I had them placed before 
-					the <b>first iteration</b> of the algorithm even begun. <b>Reserved spaces</b> along the critical path were placed as <b>blank "air" tiles</b> to prevent walls blocking the path, and the border 
-					of the map and bottom of each room were set as <b>interior wall tiles</b>. This ensured the <b>basic structure conformed to my goal</b> for the stage outcome, <b>one main path</b> from top 
-					to bottom, with smaller <b>bonus routes containing extra collectables</b> branching off from it. These interior walls were <b>grown outward</b> from the starting pieces, branching into the 
-					<b>final level</b> which the player gets dropped into each stage. In this way, the level is <b>grown organically</b> from a <b>semi-curated template</b> to ensure consistency, but based on the <b>design factors</b> of the desired stylistic outcome.</p>
-					<p>You'll most likely have noticed that each <b>iteration</b> of Wave Function Collapse is followed by a <b>cleanup</b> where things get shuffled around a bit, and this was one of the biggest take-aways for me 
-					during the project. While powerful, Wave Function Collapse <b>isn't a perfect algorithm</b>, and tends to generate a lot of <b>nonsense</b> as well as <b>general coherence</b>. This stands to reason, <b>level 
-					design isn't an easy thing</b> for a human to do quickly, and programming an algorithm for it to be done procedurally isn't an easy thing either. For my implementation, 
-					I found that it was most effective to <b>treat blank space as a tile</b> of its own, so that gaps between walls and other features may still be <b>interpreted</b> by the algorithm. This had a side 
-					effect however, of also creating <b>unresolvable</b> situations in which <b>non-replaceable air</b> would generate in one direction and some other <b>exposed structure</b> in the other. Eventually I got 
-					the levels working <b>effectively</b> with the <b>player controller</b>, and after tons of <b>playtesting</b> it finally felt right.</p>
+					<p>The reason that wave function collapse is so powerful is that in a way, it's process can be quite similar to a that of a human solving a puzzle, or designing a level. 
+					It takes the knowledge of the current state of the puzzle and the available pieces into account when working on the solution. In the case of programming this, the generator needed 
+					to have some idea of where to start from, so to ensure a valid path through the level and appropriate wall structure as the biggest priorities, I had them placed before 
+					the first iteration of the algorithm even begun. Reserved spaces along the critical path were placed as blank "air" tiles to prevent walls blocking the path, and the border 
+					of the map and bottom of each room were set as interior wall tiles. This ensured the basic structure conformed to my goal for the stage outcome, one main path from top 
+					to bottom, with smaller bonus routes containing extra collectables branching off from it. These interior walls were grown outward from the starting pieces, branching into the 
+					final level which the player gets dropped into each stage. In this way, the level is grown organically from a semi-curated template to ensure consistency, but based on the design factors of the desired stylistic outcome.</p>
+					<p>You'll most likely have noticed that each iteration of Wave Function Collapse is followed by a cleanup where things get shuffled around a bit, and this was one of the biggest take-aways for me 
+					during the project. While powerful, Wave Function Collapse isn't a perfect algorithm, and tends to generate a lot of nonsense as well as general coherence. This stands to reason, level 
+					design isn't an easy thing for a human to do quickly, and programming an algorithm for it to be done procedurally isn't an easy thing either. For my implementation, 
+					I found that it was most effective to treat blank space as a tile of its own, so that gaps between walls and other features may still be interpreted by the algorithm. This had a side 
+					effect however, of also creating unresolvable situations in which non-replaceable air would generate in one direction and some other exposed structure in the other. Eventually I got 
+					the levels working effectively with the player controller, and after tons of playtesting it finally felt right.</p>
 					<h3>One last thing...</h3>
 					<p>There's so much more I could write about this project, but it's gotten far too technical already. If you're another programmer working on a similar problem 
-					and need to find some answers, or you'd just like to know more, <b>feel free to contact me</b>! I'd be happy to help out!</p>
+					and need to find some answers, or you'd just like to know more, feel free to contact me! I'd be happy to help out!</p>
 					<span class="image fit" style="margin-bottom:0;padding-bottom:0;width:90%;height:90%;display:block;margin:auto;"><img src="images/CavernCollapse/GameplayScreenshot.png" alt="A diagram of one iteration of the WFC algorithm" style="border-radius:1em;" /></span>
 					<p style="text-align:center;"><i>The beginning of a descent attempt in-game.</i></p>
 					<hr/>
